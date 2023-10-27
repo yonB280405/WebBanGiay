@@ -1,10 +1,12 @@
 ﻿@model SneakerStore.Models.AdminUser
 
+@if (Session["NameUser"] == null)
+{
+    Html.RenderAction("FormLogin", "LoginUser");
+}﻿
+
 @{
     ViewBag.Title = "Admin";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-@if (Session["NameUser"] == null)
-{
-    { Html.RenderAction("FormLogin", "LoginUser");}
-}
+

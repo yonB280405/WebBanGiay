@@ -1,10 +1,8 @@
-﻿﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
     <style>
         #div-footer {
             position: fixed;
@@ -65,11 +63,14 @@
         }
 
         #searchkey {
-            width: 650px;
+            width: 280px;
             height: 40px;
             margin-left: 380px;
             position: absolute;
             top: 50px;
+            border-radius: 8px;
+            border: none;
+            margin-top: -10px;
         }
 
         #submit {
@@ -78,6 +79,7 @@
             position: absolute;
             top: 50px;
             margin-left: 670px;
+            margin-top: -10px;
         }
 
         #header-with-search {
@@ -95,11 +97,11 @@
 
         .link-item {
             color: white;
-            font-size: 64px;
+            font-size: 65px;
+            text-decoration: none;
         }
 
             .link-item:hover {
-                text-decoration: none;
                 color: white;
             }
 
@@ -116,11 +118,21 @@
 
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" style="border:none;">
+        <div id="header-with-search">
+            <span class="form-group form-inline">
+                <span id="header-name">@Html.ActionLink("DOGBEE", "Index", "Product", null, new { @class = "link-item" })</span>
+                @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "textbox" }))
+                {
+                    <span>@Html.TextBox("SearchString", "", new { placeholder = "Nhập sản phẩm muốn tìm...", id = "searchkey" })</span>
+                    <input type="submit" id="submit" class="form-control" value="Tìm kiếm" />
+                }
+            </span>
+        </div>
         <nav id="header-nav">
             <ul id="header-nav-list">
                 <li id="header-nav-item">
                     <a href="/ShoppingCart/ShowCart">
-                        <span class="glyphicon glyphicon-shopping-cart" style="color:white;font-size:20px;"></span>
+                        <span class="fas fa-shopping-cart" style="color:white;font-size:20px;"></span>
                         @Html.Action("BagCart", "ShoppingCart")
                     </a>
                 </li>
@@ -157,17 +169,6 @@
                 }
             </ul>
         </nav>
-
-        <div id="header-with-search">
-            <span class="form-group form-inline">
-                <span id="header-name">@Html.ActionLink("DOGBEE", "Index", "Product", null, new { @class = "link-item" })</span>
-                @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "textbox" }))
-                {
-                    <span>@Html.TextBox("SearchString", "", new { placeholder = "Nhập sản phẩm muốn tìm...", id = "searchkey" })</span>
-                    <input type="submit" id="submit" class="form-control" value="Tìm kiếm" />
-                }
-            </span>
-        </div>
     </div>
     <div class="render">
         @RenderBody()
