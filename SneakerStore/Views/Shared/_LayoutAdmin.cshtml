@@ -1,0 +1,72 @@
+﻿﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" ; />
+    <meta name="viewport" ; content="width=device-width, initial-scale=1.0" />
+    <title>DOGBEE-@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/menu.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    @if (Session["NameUser"] == null)
+    {
+
+    }
+    else
+    {
+        string temp = (string)Session["RoleUser"];
+
+        if (temp == "Admin")
+        {
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-collapse collapse">
+                        <nav>
+                            <ul>
+                                <li><a href="~/Product/Pro">Quản lí sản phẩm</a></li>
+                                <li><a href="~/Categories/Index">Quản lí thương hiệu</a></li>
+                                <li><a href="~/Customers/Index">Quản lí khách hàng</a></li>
+                                <li><a href="~/OrderProes/Index">Quản lí đơn hàng</a></li>
+                                <li><a href="~/LoginUser/RegisterUser">Cấp quyền cho nhân viên</a></li>
+                            </ul>
+                        </nav>
+                        <nav style="text-align:center; color:white; font-size:25px;">
+                            @Session["RoleUser"]: @Session["NameUser"]
+                            <a href="@Url.Action("LogOutUser", "LoginUser")" class="item">
+                                <span id="header-icon"></span>
+                                Đăng xuất
+                            </a>
+                        </nav>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-collapse collapse">
+                        <nav style="text-align:center; color:white; font-size:25px;">
+                            @Session["RoleUser"]: @Session["NameUser"]
+                            <a href="@Url.Action("LogOutUser", "LoginUser")" class="item">
+                                <span id="header-icon"></span>
+                                Đăng xuất
+                            </a>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+    }
+    <div style="margin: 0 50px; margin-top:80px;">
+        @RenderBody()
+    </div>
+</body>
+</html>
