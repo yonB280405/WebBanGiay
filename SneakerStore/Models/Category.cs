@@ -11,7 +11,7 @@ namespace SneakerStore.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +19,10 @@ namespace SneakerStore.Models
         {
             this.Products = new HashSet<Product>();
         }
-    
+
         public int IDCate { get; set; }
         public string NameCate { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
         public List<Category> ListCate { get; set; }

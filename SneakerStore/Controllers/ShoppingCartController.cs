@@ -1,6 +1,7 @@
 ﻿using SneakerStore.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -112,6 +113,22 @@ namespace SneakerStore.Controllers
         public ActionResult CheckOut_Success()
         {
             return View();
+        }
+        public ActionResult ApplyDiscountCode(FormCollection form)
+        {
+            Cart cart = Session["Cart"] as Cart;
+            string discountCode = (string)form["discountCode"];
+
+            var check = database.Vouchers.
+                Where(s => s.MaVoucher == discountCode).FirstOrDefault();
+
+            if (check != null)
+            {
+                int perCentDis = (int)check.PhanTramDis;
+                Session["perCentDis"] = perCentDis;
+                cart.Total_price_after_dis();
+            }
+            return RedirectToAction("ShowCart","ShoppingCart");
         }
     }
 }

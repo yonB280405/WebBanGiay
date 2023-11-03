@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace SneakerStore.Models
     {
         public Product _product { get; set; }
         public int _quantity { get; set; }
+
     }
 
     public class Cart
@@ -19,6 +21,8 @@ namespace SneakerStore.Models
         {
             get { return items; }
         }
+
+
 
         public void Add_Product_Cart(Product _pro, int _quan = 1)
         {
@@ -41,9 +45,30 @@ namespace SneakerStore.Models
         //Viet ham tinh thanh tien cho moi dong san pham
         public decimal Total_money()
         {
-            var total = items.Sum(s => s._quantity * s._product.Price);
+            var total = items.Sum(s => s._quantity * (s._product.Price));
             return (decimal)total;
         }
+
+        public decimal Total_price_after_dis() 
+        {
+            decimal totalPrice = Total_money();
+
+            if (System.Web.HttpContext.Current.Session != null && System.Web.HttpContext.Current.Session["perCentDis"] != null)
+            {
+                int? intValue = System.Web.HttpContext.Current.Session["perCentDis"] as int?;
+                if (intValue.HasValue)
+                {
+                    int perCentDis = (int)System.Web.HttpContext.Current.Session["perCentDis"];
+                    decimal totalAfterDiscount = totalPrice - (totalPrice * perCentDis / 100);
+
+                    return (decimal)totalAfterDiscount;
+                }
+
+            }
+            return (decimal)totalPrice;
+        }
+
+
         //VIet ham cap nhat lai so luong san pham o moi dong san pham khi khach hang muon dat mua them
         public void Update_quantity(int id, int _new_quan)
         {

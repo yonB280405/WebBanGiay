@@ -33,7 +33,9 @@ namespace SneakerStore.Controllers
                 Session["NameUser"] = _user.NameUser;
                 Session["PasswodUser"] = _user.PasswordUser;
                 Session["RoleUser"] = check.RoleUser;
-                 
+                Session["perCentDis"] = 0;
+
+
                 if (check.RoleUser.ToString() == "Quản lí sản phẩm")
                     return RedirectToAction("Pro", "Product");
                 else if (check.RoleUser.ToString() == "Quản lí khách hàng")

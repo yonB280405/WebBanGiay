@@ -54,14 +54,24 @@
                 </tr>
 
             }
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-            <a style="color:orangered" href="@Url.Action("Index","Product")">Tìm các sản phẩm khác</a>
-        </td>
+
+            <tr>
+                <td>
+                    <h2>Mã giảm giá</h2>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    @using (Html.BeginForm("ApplyDiscountCode", "ShoppingCart"))
+                    {
+                        <label for="discountCode">Nhập mã giảm giá:</label>
+                        <input type="text" name="discountCode" />
+                        <input type="submit" value="Apply" />
+                    }
+                </td>
+
+            </tr>
+
         </tbody>
 
         <tfoot>
@@ -100,7 +110,7 @@
 
                             <td colspan="6" style="text-align:right;font-size:20px;color:#ee4d2d">
                                 <hr />
-                                Tổng tiền: @Model.Total_money()
+                                Tổng tiền: @Model.Total_price_after_dis()
                                 <span class="items-dong" style="font-size:25px;">₫</span>
                                 <input type="submit" value="Thanh toán" name="CheckOut" class="btn btn-warning" />
 
@@ -110,7 +120,9 @@
 
                 </td>
             </tr>
-
+        <td>
+            <a style="color:orangered; text-decoration:none;" href="@Url.Action("Index","Product")">Tìm các sản phẩm khác</a>
+        </td>
         </tfoot>
     </table>
 }

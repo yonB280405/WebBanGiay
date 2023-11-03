@@ -11,17 +11,12 @@ namespace SneakerStore.Models
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class OrderDetail
+    
+    public partial class Voucher
     {
-        public int ID { get; set; }
-        public Nullable<int> IDProduct { get; set; }
-        public Nullable<int> IDOrder { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<double> UnitPrice { get; set; }
-        public Nullable<int> Size { get; set; }
-
-        public virtual OrderPro OrderPro { get; set; }
-        public virtual Product Product { get; set; }
+        public string IDVoucher { get; set; }
+        public string MaVoucher { get; set; }
+        public Nullable<int> PhanTramDis { get; set; }
+        public string MotaVoucher { get; set; }
     }
 }
