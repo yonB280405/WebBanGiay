@@ -2,7 +2,12 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOGBEE STORE</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*<meta name="viewport" content="width=device-width" />*@
     <style>
         #div-footer {
             position: fixed;
@@ -117,13 +122,14 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="border:none;">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div id="header-with-search">
             <span class="form-group form-inline">
                 <span id="header-name">@Html.ActionLink("DOGBEE", "Index", "Product", null, new { @class = "link-item" })</span>
                 @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "textbox" }))
                 {
-                    <span>@Html.TextBox("SearchString", "", new { placeholder = "Nhập sản phẩm muốn tìm...", id = "searchkey" })</span>
+                    @Html.TextBox("SearchString", "", new { placeholder = "Nhập sản phẩm muốn tìm...", id = "searchkey" })
+
                     <input type="submit" id="submit" class="form-control" value="Tìm kiếm" />
                 }
             </span>
@@ -132,7 +138,7 @@
             <ul id="header-nav-list">
                 <li id="header-nav-item">
                     <a href="/ShoppingCart/ShowCart">
-                        <span class="fas fa-shopping-cart" style="color:white;font-size:20px;"></span>
+                        <span class="glyphicon glyphicon-shopping-cart" style="color:white;font-size:20px;"></span>
                         @Html.Action("BagCart", "ShoppingCart")
                     </a>
                 </li>
@@ -148,7 +154,7 @@
                         <span>|</span>
                     </li>
                     <li id="header-nav-item">
-                        <a href="/Customers/LoginCus" class="item " style="font-size:unset;">
+                        <a href="/Customers/LoginCus" class="item" style="font-size:unset;">
                             <span id="header-icon"></span>
                             Đăng nhập
                         </a>
@@ -156,7 +162,7 @@
                 }
                 else
                 {
-                    <li id="header-nav-item"><span><text class="glyphicon glyphicon-user"></text> @Session["NameUser"]</span></li>
+                    <li id="header-nav-item"><span><text class="glyphicon glyphicon-user"></text> @Session["NameCus"]</span></li>
                     <li id="header-nav-item">
                         <span>|</span>
                     </li>
