@@ -17,7 +17,7 @@ namespace SneakerStore.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult LoginAccount(AdminUser _user)
+        public ActionResult FormLogin(AdminUser _user)
         {
             var check = database.AdminUsers.
                 Where(s => s.NameUser == _user.NameUser && s.PasswordUser == _user.PasswordUser).FirstOrDefault();
@@ -40,8 +40,9 @@ namespace SneakerStore.Controllers
                     return RedirectToAction("Index", "Customers");
                 else if (check.RoleUser.ToString() == "Quản lí đơn hàng")
                     return RedirectToAction("Index", "OrderProes");
-                else
-                    return RedirectToAction("Admin", "Home");
+                else if (check.RoleUser.ToString() == "Admin")
+                    return RedirectToAction("Admin", "LoginUser");
+                return View();
             }
         }
         public ActionResult RegisterUser()
@@ -73,6 +74,11 @@ namespace SneakerStore.Controllers
         {
             Session.Abandon();
             return RedirectToAction("FormLogin", "LoginUser");
+        }
+
+        public ActionResult Admin()
+        {
+            return View();
         }
 
     }

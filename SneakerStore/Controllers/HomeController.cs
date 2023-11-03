@@ -15,6 +15,6 @@ namespace SneakerStore.Controllers
         {
             return View();
         }
-        
+       
     }
 }
