@@ -115,7 +115,6 @@ namespace SneakerStore.Controllers
         {
             return View();
         }
-<<<<<<< HEAD
         public ActionResult ApplyDiscountCode(FormCollection form)
         {
             Cart cart = Session["Cart"] as Cart;
@@ -132,7 +131,6 @@ namespace SneakerStore.Controllers
             }
             return RedirectToAction("ShowCart","ShoppingCart");
         }
-=======
 
         public ActionResult PaymentWithPaypal(string Cancel = null)
         {
@@ -264,7 +262,5 @@ namespace SneakerStore.Controllers
             // Create a payment using a APIContext  
             return this.payment.Create(apiContext);
         }
-
->>>>>>> Sang
     }
 }
