@@ -15,8 +15,12 @@
         <AssociationConnector Association="DBSneakerStoreModel.FK__OrderDeta__IDOrd__30F848ED" ManuallyRouted="false" />
         <AssociationConnector Association="DBSneakerStoreModel.FK__OrderDeta__IDPro__300424B4" ManuallyRouted="false" />
         <AssociationConnector Association="DBSneakerStoreModel.FK_Pro_Category" />
+<<<<<<< HEAD
         <EntityTypeShape EntityType="DBSneakerStoreModel.sysdiagram" Width="1.5" PointX="3.75" PointY="4.75" />
         <EntityTypeShape EntityType="DBSneakerStoreModel.Voucher" Width="1.5" PointX="0.75" PointY="5.75" />
+=======
+        <EntityTypeShape EntityType="DBSneakerStoreModel.Voucher" Width="1.5" PointX="3.375" PointY="4.75" />
+>>>>>>> Sang
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
