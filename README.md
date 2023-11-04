@@ -9,7 +9,7 @@
 ### Sang: 
      Trang chủ/Danh sách sản phẩm
      Trang Admin
-     
+     Chi tiết sản phẩm
 Contact:
      [Facebook](https://facebook.com/sangnguyen01678/)
      ---
@@ -22,5 +22,4 @@ Contact:
       ---
       [Git](https://github.com/G1aBa0/)
 ### Thắng: 
-     Chi tiết sản phẩm
      Banner
