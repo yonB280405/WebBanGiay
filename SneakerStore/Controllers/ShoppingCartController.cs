@@ -44,7 +44,7 @@ namespace SneakerStore.Controllers
         {
             Cart cart = Session["Cart"] as Cart;
             int id_pro = int.Parse(form["idPro"]);
-            int maxquan = int.Parse(form["maxValue"]);
+            //int maxquan = int.Parse(form["maxValue"]);
             int _quantity = int.Parse(form["cartQuantity"]);
             if (_quantity>0)
             {
