@@ -64,7 +64,16 @@
           <Property Name="ImagePro" Type="nvarchar(max)" />
           <Property Name="Quantity" Type="int" />
         </EntityType>
-        <Association Name="FK__OrderDeta__IDOrd__30F848ED">
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="IDVoucher" />
+          </Key>
+          <Property Name="IDVoucher" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaVoucher" Type="varchar" MaxLength="50" />
+          <Property Name="PhanTramDis" Type="int" />
+          <Property Name="MotaVoucher" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__OrderDeta__IDOrd__2E1BDC42">
           <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -76,7 +85,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__IDPro__300424B4">
+        <Association Name="FK__OrderDeta__IDPro__2F10007B">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -88,7 +97,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderPro__IDCus__2D27B809">
+        <Association Name="FK__OrderPro__IDCus__300424B4">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -119,15 +128,16 @@
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderPro" EntityType="Self.OrderPro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__OrderDeta__IDOrd__30F848ED" Association="Self.FK__OrderDeta__IDOrd__30F848ED">
+          <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__OrderDeta__IDOrd__2E1BDC42" Association="Self.FK__OrderDeta__IDOrd__2E1BDC42">
             <End Role="OrderPro" EntitySet="OrderPro" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__IDPro__300424B4" Association="Self.FK__OrderDeta__IDPro__300424B4">
+          <AssociationSet Name="FK__OrderDeta__IDPro__2F10007B" Association="Self.FK__OrderDeta__IDPro__2F10007B">
             <End Role="Product" EntitySet="Product" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderPro__IDCus__2D27B809" Association="Self.FK__OrderPro__IDCus__2D27B809">
+          <AssociationSet Name="FK__OrderPro__IDCus__300424B4" Association="Self.FK__OrderPro__IDCus__300424B4">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="OrderPro" EntitySet="OrderPro" />
           </AssociationSet>
@@ -266,6 +276,7 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
+          <EntitySet Name="Vouchers" EntityType="DBSneakerStoreModel.Voucher" />
         </EntityContainer>
         <Association Name="FK_Pro_Category">
           <End Type="DBSneakerStoreModel.Category" Role="Category" Multiplicity="0..1" />
@@ -279,6 +290,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="IDVoucher" />
+          </Key>
+          <Property Name="IDVoucher" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaVoucher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhanTramDis" Type="Int32" />
+          <Property Name="MotaVoucher" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -347,6 +367,16 @@
                 <ScalarProperty Name="CateID" ColumnName="CateID" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="ImagePro" ColumnName="ImagePro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vouchers">
+            <EntityTypeMapping TypeName="DBSneakerStoreModel.Voucher">
+              <MappingFragment StoreEntitySet="Voucher">
+                <ScalarProperty Name="MotaVoucher" ColumnName="MotaVoucher" />
+                <ScalarProperty Name="PhanTramDis" ColumnName="PhanTramDis" />
+                <ScalarProperty Name="MaVoucher" ColumnName="MaVoucher" />
+                <ScalarProperty Name="IDVoucher" ColumnName="IDVoucher" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

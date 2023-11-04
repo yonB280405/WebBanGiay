@@ -12,11 +12,11 @@ namespace SneakerStore.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminUser
+    public partial class Voucher
     {
-        public int ID { get; set; }
-        public string NameUser { get; set; }
-        public string RoleUser { get; set; }
-        public string PasswordUser { get; set; }
+        public string IDVoucher { get; set; }
+        public string MaVoucher { get; set; }
+        public Nullable<int> PhanTramDis { get; set; }
+        public string MotaVoucher { get; set; }
     }
 }

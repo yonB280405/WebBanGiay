@@ -11,20 +11,15 @@ namespace SneakerStore.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Web;
-
+    
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
             this.OrderDetails = new HashSet<OrderDetail>();
-            ImagePro = "~/Content/images/add.png";
         }
-        [NotMapped]
-        public HttpPostedFileBase UploadImage { get; set; }
-
+    
         public int ProductID { get; set; }
         public string NamePro { get; set; }
         public string DecriptionPro { get; set; }
