@@ -16,7 +16,7 @@
         </EntityType>
         <EntityType Name="Category">
           <Key>
-            <PropertyRef Name="IDCate" />
+           <PropertyRef Name="IDCate" />
           </Key>
           <Property Name="IDCate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameCate" Type="nvarchar" MaxLength="50" />
@@ -83,7 +83,7 @@
           <Property Name="PhanTramDis" Type="int" />
           <Property Name="MotaVoucher" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK__OrderDeta__IDOrd__30F848ED">
+        <Association Name="FK__OrderDeta__IDOrd__2E1BDC42">
           <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -95,7 +95,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__IDPro__300424B4">
+        <Association Name="FK__OrderDeta__IDPro__2F10007B">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -107,7 +107,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderPro__IDCus__2D27B809">
+        <Association Name="FK__OrderPro__IDCus__300424B4">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -140,15 +140,15 @@
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__OrderDeta__IDOrd__30F848ED" Association="Self.FK__OrderDeta__IDOrd__30F848ED">
+          <AssociationSet Name="FK__OrderDeta__IDOrd__2E1BDC42" Association="Self.FK__OrderDeta__IDOrd__2E1BDC42">
             <End Role="OrderPro" EntitySet="OrderPro" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__IDPro__300424B4" Association="Self.FK__OrderDeta__IDPro__300424B4">
+          <AssociationSet Name="FK__OrderDeta__IDPro__2F10007B" Association="Self.FK__OrderDeta__IDPro__2F10007B">
             <End Role="Product" EntitySet="Product" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderPro__IDCus__2D27B809" Association="Self.FK__OrderPro__IDCus__2D27B809">
+          <AssociationSet Name="FK__OrderPro__IDCus__300424B4" Association="Self.FK__OrderPro__IDCus__300424B4">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="OrderPro" EntitySet="OrderPro" />
           </AssociationSet>

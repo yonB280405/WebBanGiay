@@ -80,7 +80,7 @@
             <tr>
                 <td colspan="2"></td>
                 <td colspan="4">
-                    @using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                    @using (Html.BeginForm("PaymentWithPaypal", "ShoppingCart"))
                     {
                         <table style="border-collapse:separate;border-spacing:5px;">
                             <td></td>
@@ -113,7 +113,6 @@
                                 Tổng tiền: @Model.Total_price_after_dis()
                                 <span class="items-dong" style="font-size:25px;">₫</span>
                                 <input type="submit" value="Thanh toán" name="CheckOut" class="btn btn-warning" />
-
                             </td>
                         </table>
                     }
