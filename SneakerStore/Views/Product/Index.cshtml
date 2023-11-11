@@ -5,8 +5,9 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 <style>
+
     #div-ds {
         text-align: center;
         background-color: #f5f5f5;
@@ -14,14 +15,14 @@
         border-radius: 20px 20px 0 0;
     }
 
-    .MenuPage li {
-        display: inline;
+
+
+    #btnItems {
+        margin-right: 600px;
     }
 
-    #btnItems:hover {
-        text-decoration: none;
-        background-color: #f23f2b;
-        color: white;
+    .container {
+        width: 1000px;
     }
 
     .body-selection {
@@ -32,7 +33,10 @@
         padding: 10px;
         font-size: 17px;
         width: 1000px;
+        margin: 0 auto; /* Thêm vào đây */
         display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
     }
 
     #btnItems {
@@ -40,9 +44,6 @@
         margin-left: 10px;
     }
 
-    .container {
-        width: 1000px;
-    }
 
     .pro {
         height: 270px;
@@ -51,13 +52,26 @@
         background-color: white;
         border-radius: 3px;
         text-align: center;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
         .pro:hover {
             cursor: pointer;
-            border: 0.1rem unset #fc5e31;
         }
+
+    .body-selection {
+        text-decoration: none;
+        background-color: #ededed;
+        margin-top: 20px;
+        list-style-type: none;
+        padding: 10px;
+        font-size: 17px;
+        width: 973px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+    }
 
     .price {
         overflow: hidden;
@@ -73,10 +87,43 @@
         color: #ee4d2d;
         margin: 0;
     }
+
+    .MenuPage {
+        text-align: center;
+        margin-top: 0;
+        margin-right: 875px; /* căn trái */
+        color: #ee4d2d; /* Màu chữ */
+    }
 </style>
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="/Testcss/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>
+                        @{
+                            if (!String.IsNullOrEmpty(ViewBag.SearchMessage))
+                            {
+                                <text>@ViewBag.SearchMessage</text>
+                            }
+                            else
+                            {
+                                <text>DANH SÁCH SẢN PHẨM</text>
+                            }
+                        }
+                    </h2>
+                    <div class="breadcrumb__option">
+                        <a href="./index.html">Trang Chủ</a>
+                        <span>Sản Phẩm</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
 
-
-<h2>DANH SÁCH SẢN PHẨM</h2>
 <div class="container">
     <div>
         <div class="body-selection">
@@ -99,9 +146,14 @@
                         <div class="pro">
                             <p></p>
                             <img src="@Url.Content(pro.ImagePro)" height="150" width="150" />
-                            <p>@Html.DisplayFor(model => pro.NamePro)</p>
+                            <p>
+                                @{
+                                    string limitedString = pro.NamePro.Length > 30 ? pro.NamePro.Substring(0, 30) + "..." : pro.NamePro;
+                                }
+                                @limitedString
+                            </p>
 
-                            <span class="price">@Html.DisplayFor(model => pro.Price)</span>
+                            <span class="price"> @String.Format("{0:0,0}", pro.Price)</span>
                             <span class="items-dong">₫</span>
                         </div>
                     </div>

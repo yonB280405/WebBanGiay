@@ -36,7 +36,10 @@
                     <td>
                         <img src="@Url.Content(item._product.ImagePro)" height="100" width="100" />
                     </td>
-                    <td>@Html.DisplayFor(model => item._product.Price)</td>
+                    <td>
+                        @String.Format("{0:0,0}", item._product.Price)
+                        <span class="items-dong" style="font-size:16px;">₫</span>
+                    </td>
                     <td>
                         @using (Html.BeginForm("Update_Cart_Quantity", "ShoppingCart"))
                         {
@@ -45,7 +48,10 @@
                             <input type="submit" value="Update" />
                         }
                     </td>
-                    <td>@total</td>
+                    <td>
+                        @String.Format("{0:0,0}", @total)
+                        <span class="items-dong" style="font-size:16px;">₫</span>
+                    </td>
                     <td>
                         <a href="/ShoppingCart/RemoveCart/@item._product.ProductID">Xóa</a>
                     </td>
@@ -105,13 +111,17 @@
                                     <td>Địa chỉ giao hàng:</td>
                                     <td><input type="text" name="AddressDelivery" required /></td>
                                 </tr>
+                                <tr>
+                                    <td>Số điện thoại:</td>
+                                    <td><input type="text" name="PhoneNumber" required /></td>
+                                </tr>
 
                             }
 
                             <td colspan="6" style="text-align:right;font-size:20px;color:#ee4d2d">
                                 <hr />
-                                Tổng tiền: @Model.Total_price_after_dis()
-                                <span class="items-dong" style="font-size:25px;">₫</span>
+                                Tổng tiền: @String.Format("{0:0,0}", @Model.Total_price_after_dis())
+                                <span class="items-dong" style="font-size:20px;">₫</span>
                                 <input type="submit" value="Thanh toán" name="CheckOut" class="btn btn-warning" />
                             </td>
                         </table>

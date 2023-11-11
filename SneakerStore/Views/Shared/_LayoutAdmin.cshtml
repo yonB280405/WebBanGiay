@@ -1,5 +1,4 @@
-﻿v
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -32,6 +31,7 @@
     <div>
         @if (Session["NameUser"] == null)
         {
+
         }
         else
         {
@@ -63,7 +63,7 @@
                     @Session["RoleUser"]:@Session["NameUser"]
                     <a href="@Url.Action("LogOutUserAD", "LoginUser")" class="item"
                <span id="header-icon"></span>
-                    Đăng Xuát
+                    Đăng Xuất
                 </nav>
             }
 

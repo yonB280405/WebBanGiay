@@ -20,31 +20,40 @@ namespace SneakerStore.Controllers
         {
             int pageSize = 8;
             int pageNum = (page ?? 1);
-            var list = database.Products.OrderByDescending(x=>x.NamePro).Where(p => (double)p.Price >= min && (double)p.Price <= max).ToList();
+            var list = database.Products.OrderByDescending(x => x.NamePro).Where(p => (double)p.Price >= min && (double)p.Price <= max).ToList();
             return View(list.ToPagedList(pageNum, pageSize));
         }
 
         // GET: Product
-        public ActionResult Index(int? category,string SearchString,int? page)
+        public ActionResult Index(int? category, string SearchString, int? page)
         {
             int pageSize = 20;
             int pageNum = (page ?? 1);
             var productList = database.Products.Include(p => p.Category);
+            string searchMessage = ""; // Tạo biến để lưu thông điệp tìm kiếm
             if (category == null)
             {
-                 productList = database.Products.OrderByDescending(x => x.NamePro);
+                productList = database.Products.OrderByDescending(x => x.NamePro);
 
             }
             else
             {
-                 productList = database.Products.OrderByDescending(x => x.NamePro).Where(p => p.CateID == category );
+                productList = database.Products.OrderByDescending(x => x.NamePro).Where(p => p.CateID == category);
 
             }
 
             if (!String.IsNullOrEmpty(SearchString))
             {
                 productList = productList.Where(s => s.NamePro.Contains(SearchString));
+                searchMessage = "SẢN PHẨM BẠN TÌM: " + SearchString; // Thiết lập thông điệp tìm kiếm
             }
+            ViewBag.SearchMessage = searchMessage;
+            string successMessage = TempData["SuccessMessage"] as string;
+            if (!string.IsNullOrEmpty(successMessage))
+            {
+                ViewBag.SuccessMessage = successMessage;
+            }
+
             return View(productList.ToPagedList(pageNum, pageSize));
 
         }
@@ -66,7 +75,7 @@ namespace SneakerStore.Controllers
                     string filename = Path.GetFileNameWithoutExtension(pro.UploadImage.FileName);
                     string extent = Path.GetExtension(pro.UploadImage.FileName);
                     filename = filename + extent;
-                    pro.ImagePro= "~/Content/images/" + filename;
+                    pro.ImagePro = "~/Content/images/" + filename;
                     pro.UploadImage.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), filename));
                 }
                 ViewBag.listCategory = new SelectList(list, "IDCate", "NameCate");
@@ -80,7 +89,7 @@ namespace SneakerStore.Controllers
             }
         }
 
-   
+
         public ActionResult SelectCate()
         {
             Category se_cate = new Category();
@@ -106,7 +115,7 @@ namespace SneakerStore.Controllers
             else
             {
                 return View(database.Products.Where(s => s.NamePro.Contains(_namePro)).ToList());
-            }         
+            }
         }
 
         public ActionResult Details(int id)

@@ -144,14 +144,38 @@ namespace SneakerStore.Controllers
                 Session["NameCus"] = check.NameCus;
                 Session["UserName"] = check.UserName;
                 Session["PhoneCus"] = check.PhoneCus;
-                return RedirectToAction("Index","Product");
+
+                // Kiểm tra xem có URL trả lại trong chuỗi truy vấn không
+                string returnUrl = Request.QueryString["ReturnUrl"];
+
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    // Nếu có URL trả lại, chuyển hướng đến nó
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    // Nếu không có URL trả lại, chuyển hướng đến hành động mặc định
+                    return RedirectToAction("Index", "Product");
+                }
             }
         }
+
 
         public ActionResult LogOutCus()
         {
             Session.Abandon();
-            return RedirectToAction("Index", "Product");
+            if (Request.UrlReferrer != null)
+            {
+                // Lấy đường dẫn trước đó và chuyển hướng
+                string returnUrl = Request.UrlReferrer.AbsolutePath;
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                // Nếu không có đường dẫn trước đó, chuyển hướng mặc định
+                return RedirectToAction("Index", "Product");
+            }
         }
 
         protected override void Dispose(bool disposing)

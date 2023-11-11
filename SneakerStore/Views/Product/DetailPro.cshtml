@@ -4,13 +4,15 @@
     ViewBag.Title = "DetailPro";
     Layout = "~/Views/Shared/_LayoutDetail.cshtml";
 }
-@*@Styles.Render("~/Content/css")*@
+@Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 
 <style>
     body {
-        margin:-8px;
+        margin: -8px;
+        padding:0px;
     }
+
     .body-content {
         padding-left: 15px;
         padding-right: 15px;
@@ -85,7 +87,7 @@
                 </dd>
                 <hr />
                 <dd>
-                    <span class="price">@Html.DisplayFor(model => model.Price)</span>
+                    <span class="price"> @String.Format("{0:0,0}", Model.Price)</span>
                     <span class="items-dong">₫</span>
                 </dd>
                 <br />

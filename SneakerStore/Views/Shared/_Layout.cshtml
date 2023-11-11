@@ -1,209 +1,229 @@
-﻿﻿
+﻿
 <!DOCTYPE html>
-<html>
+<html lang="zxx">
+
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOGBEE STORE</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        body {
-            padding: 0;
-            background-color: #f5f5f5;
-            padding-bottom: 55px;
-        }
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOGBEE</title>
 
-        #div-footer {
-            position: fixed;
-            text-align: center;
-            bottom: 0;
-            left: 0;
-            padding-top: 15px;
-            height: 50px;
-            width: 100%;
-            background-color: #ededed;
-        }
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
-        .navbar-inverse {
-            height: 120px;
-            width: 100%;
-            background-image: linear-gradient(0, #fe6332, #f53e2d);
-            border: 0;
-        }
-
-        #header-nav {
-            float: right;
-            padding-right: 160px;
-            color: white;
-        }
-
-        #header-nav-list {
-            list-style: none;
-            font-size: 15px;
-            font-weight: 200;
-        }
-
-        #header-nav-item {
-            display: inline-block;
-            margin: 8px;
-            color: white;
-            font-size: 20px;
-        }
-
-        #header-icon, .item {
-            color: white;
-        }
-
-            #header-icon:hover, .item:hover {
-                text-decoration: none;
-                color: whitesmoke;
-            }
-
-        #header-name {
-            font-size: 30px;
-            color: white;
-            font-family: Quicksand;
-            word-spacing: 5px;
-        }
-
-        li.format-hello {
-            padding-top: 15px;
-            color: white;
-        }
-
-        #searchkey {
-            width: 280px;
-            height: 40px;
-            margin-left: 380px;
-            position: absolute;
-            top: 50px;
-            border-radius: 8px;
-            border: none;
-            margin-top: -10px;
-        }
-
-        #submit {
-            width: 85px;
-            height: 40px;
-            position: absolute;
-            top: 50px;
-            margin-left: 670px;
-            margin-top: -10px;
-        }
-
-        #header-with-search {
-            padding: 0 160px;
-            display: inline-block;
-        }
-
-        span {
-            margin: 5px;
-        }
-
-        #div-content {
-            margin: 0 160px;
-        }
-
-        .link-item {
-            color: white;
-            font-size: 64px;
-        }
-
-            .link-item:hover {
-                text-decoration: none;
-                color: white;
-            }
-
-        #div-container {
-            margin-right: 160px;
-        }
-    </style>
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/Testcss/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Testcss/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Testcss/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/Testcss/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/Testcss/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Testcss/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Testcss/css/slicknav.min.css" type="text/css">
+    <link href="~/Testcss/css/style.css" rel="stylesheet" />
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div id="header-with-search">
-            <span class="form-group form-inline">
-                <span id="header-name">@Html.ActionLink("DOGBEE", "Index", "Product", null, new { @class = "link-item" })</span>
-                @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "textbox" }))
-                {
-                    @Html.TextBox("SearchString", "", new { placeholder = "Nhập sản phẩm muốn tìm...", id = "searchkey" })
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                <li>Free Shipping for all Order of $99</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                    <a href="/ShoppingCart/ShowCart" class="header__cart" style="padding:0;">
+                                        <i class="fa fa-shopping-bag"></i>
+                                        <span>@Html.Action("BagCart", "ShoppingCart")</span>
+                                    </a>
+                            </div>
+                            @if (Session["NameCus"] != null)
+                            {
+                                <div class="header__top__right__language">
+                                    <span>
+                                        <i class="fa fa-user"></i>
+                                        <span style="font-size: 14px;">@Session["NameCus"]</span>
+                                    </span>
+                                </div>
+                            }
 
-                    <input type="submit" id="submit" class="form-control" value="Tìm kiếm" />
-                }
-            </span>
-        </div>
-        <nav id="header-nav">
-            <ul id="header-nav-list">
-                <li id="header-nav-item">
-                    <a href="/ShoppingCart/ShowCart">
-                        <span class="bi bi-cart" style="color:white;font-size:20px;"></span>
-                        @Html.Action("BagCart", "ShoppingCart")
-                    </a>
-                </li>
-                @if (Session["NameCus"] == null)
-                {
-                    <li id="header-nav-item">
-                        <a href="/Customers/Create" class="item" style="font-size:unset;">
-                            <span id="header-icon"></span>
-                            Đăng ký
-                        </a>
-                    </li>
-                    <li style="margin:0;" id="header-nav-item">
-                        <span>|</span>
-                    </li>
-                    <li id="header-nav-item">
-                        <a href="/Customers/LoginCus" class="item" style="font-size:unset;">
-                            <span id="header-icon"></span>
-                            Đăng nhập
-                        </a>
-                    </li>
-                }
-                else
-                {
-                    <li id="header-nav-item"><span><text class="glyphicon glyphicon-user"></text> @Session["NameCus"]</span></li>
-                    <li id="header-nav-item">
-                        <span>|</span>
-                    </li>
-                    <li id="header-nav-item">
-                        <a href="@Url.Action("LogOutCus", "Customers")" class="item">
-                            <span id="header-icon"></span>
-                            Đăng xuất
-                        </a>
-                    </li>
-                }
-            </ul>
-        </nav>
+                            <div class="header__top__right__auth">
+                                @if (Session["NameCus"] == null)
+                                {
+                                    <a href="/Customers/LoginCus"><i class="fa fa-user"></i> Login</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("LogOutCus", "Customers")"><i class="fa fa-sign-out"></i> Logout</a>
+                                }
+                            </div>
+                        </div>
 
-    </div>
-    <div class="container-fluid body-content">
-        <div class="row" id="div-content" style="margin-top:20px; margin-bottom:30px;">
-            <div class="col-md-2" style="padding:0; padding-right:5px;">
-                <ul style="margin-top: 21px; background-color: #ededed; height:53px; padding-top:12px;padding-left:0;">
-                    <li style="list-style: none;">
-                        <span class="glyphicon glyphicon-search"></span>
-                        <span style=" font-size: 19px; font-weight:600">Bộ lọc tìm kiếm</span>
-                    </li>
-                </ul>
-                <ul style="list-style-type:none;">
-                    <li>
-                        <a href="~/Product/SearchOption" class="btn btn-default">Search theo giá</a>
-                    </li>
-                </ul>
-                <hr />
-                <ul>
-                    <h4 style="font-weight:600; font-size:15px;">Thương hiệu</h4>
-                    @{Html.RenderAction("CategoryPartial", "Categories"); }
-                </ul>
-            </div>
-            <div class="col-md-8" id="div-container">
-                @RenderBody()
+                    </div>
+                </div>
             </div>
         </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="header__logo">
+                        <a href="@Url.Action("Index", "Product")"><span>DOGBEE</span></a>
+                    </div>
+                </div>
+                @*<div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li><a href="./index.html">Home</a></li>
+                            <li class="active"><a href="@Url.Action("Index", "Product")">Shop</a></li>
+                            <li>
+                                <a href="#">Pages</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a href="./shop-details.html">Shop Details</a></li>
+                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                                    <li><a href="./checkout.html">Check Out</a></li>
+                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="./contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>*@
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <!-- Hero Section Begin -->
+    <section class="hero hero-normal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                            <span>Sản Phẩm</span>
+                        </div>
+                        <ul>
+                            <li><a href="@Url.Action("Index", "Product")">TẤT CẢ SẢN PHẨM</a></li>
+                            <li><a href="@Url.Action("Index", "Product", new { category = 1 })">ADIDAS</a></li>
+                            <li><a href="@Url.Action("Index", "Product", new { category = 2 })">CONVERSE</a></li>
+                            <li><a href="@Url.Action("Index", "Product", new { category = 3 })">NIKE</a></li>
+                            <li><a href="@Url.Action("Index", "Product", new { category = 5 })">VANS</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "textbox" }))
+                            {
+                                <div class="hero__search__categories">
+                                    Sản Phẩm
+                                </div>
+                                @Html.TextBox("SearchString", "", new { placeholder = "Nhập sản phẩm muốn tìm...", id = "searchkey" })
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <div>
+        @RenderBody();
     </div>
-    <div id="div-footer" ">
-        <p>&copy; @DateTime.Now.Year - DOGBEE STORE - HUFLIT</p>
-    </div>
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="@Url.Action("Index", "Product")">DOGBEE</a>
+                        </div>
+                        <ul>
+                            <li>Địa chỉ: Sư Vạn Hạnh, TPHCM</li>
+                            <li>Phone: +65 11.188.888</li>
+                            <li>Email: DOGBEE@Gmail.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Liên Kết Hữu Ích</h6>
+                        <ul>
+                            <li><a href="#">Trang Chủ</a></li>
+                            <li><a href="#">Về Chúng Tôi</a></li>
+                            <li><a href="#">Sản Phẩm </a></li>
+
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>Join Our Newsletter Now</h6>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__widget__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> Đã đăng ký mọi quyền lợi | Trang bán giày này của  <i class="fa fa-heart" aria-hidden="true"></i> <a href="https://colorlib.com" target="_blank">DOGBEE</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                        <div class="footer__copyright__payment"><img src="~/Testcss/img/payment-item.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Js Plugins -->
+    <script src="~/Testcss/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Testcss/js/bootstrap.min.js"></script>
+    <script src="~/Testcss/js/jquery.nice-select.min.js"></script>
+    <script src="~/Testcss/js/jquery-ui.min.js"></script>
+    <script src="~/Testcss/js/jquery.slicknav.js"></script>
+    <script src="~/Testcss/js/mixitup.min.js"></script>
+    <script src="~/Testcss/js/owl.carousel.min.js"></script>
+    <script src="~/Testcss/js/main.js"></script>
+
+
+
 </body>
+
 </html>

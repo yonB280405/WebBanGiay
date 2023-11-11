@@ -71,7 +71,7 @@
                                 <img src="@Url.Content(pro.ImagePro)" height="150" width="150" />
                                 <p>@Html.DisplayFor(model => pro.NamePro)</p>
 
-                                <span class="price">@Html.DisplayFor(model => pro.Price)</span>
+                                <span class="price"> @String.Format("{0:0,0}", pro.Price)</span>
                                 <span class="items-dong">₫</span>
                             </div>
                         </div>

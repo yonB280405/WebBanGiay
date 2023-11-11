@@ -72,9 +72,15 @@
                         <div class="pro">
                             <p></p>
                             <img src="@Url.Content(pro.ImgPro)" height="150" width="150" />
-                            <p>@Html.DisplayFor(model => pro.NamePro)</p>
 
-                            <span class="price">@Html.DisplayFor(model => pro.PricePro)</span>
+                            <p>
+                                @{
+                                    string limitedString = pro.NamePro.Length > 30 ? pro.NamePro.Substring(0, 30) + "..." : pro.NamePro;
+                                }
+                                @limitedString
+                            </p>
+
+                            <span class="price"> @String.Format("{0:0,0}", pro.PricePro)</span>
                             <span class="items-dong">₫</span>
                         </div>
                     </div>
