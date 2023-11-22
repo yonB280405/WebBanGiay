@@ -113,6 +113,19 @@ namespace SneakerStore.Controllers
         }
         public ActionResult CheckOut_Success()
         {
+            Cart cart = Session["Cart"] as Cart;
+
+            // Kiểm tra nếu giỏ hàng không null
+            if (cart != null)
+            {
+                // Xóa sản phẩm khỏi giỏ hàng sau khi thanh toán
+                cart.ClearCart();
+
+                // Abandon session để đảm bảo không còn dữ liệu không mong muốn
+                Session.Abandon();
+            }
+
+            // Chuyển đến trang thành công
             return View();
         }
         public ActionResult ApplyDiscountCode(FormCollection form)
